@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{appname}"></title>
+</head>
+<body>
+<header th:fragment="topall">
+    <div class="header-top">
+        <div>
+            <a th:href="@{/}" th:text="#{appdomain}"></a>
+        </div>
+    </div>
+</header>
+</body>
+</html>

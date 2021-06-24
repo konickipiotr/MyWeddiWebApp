@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{appname}"></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/css/main_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/fragment_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/buttons_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/login_style.css">
+</head>
+<body>
+    <header th:replace="fragments/topall :: topall"></header>
+    <h1 th:text="#{login_welcome}" class="welcome-header"></h1>
+    <div class="heart">
+        <img src="/img/heart.png">
+    </div>
+
+    <p th:if="${error_message}" class="error-message" th:text="${error_message}"></p>
+    <p th:if="${warrning_message}"  class="warrning-message" th:text="${warrning_message}"></p>
+    <p th:if="${accept_message}" class="accept-message" th:text="${accept_message}"></p>
+
+    <form>
+        <div class="login-inner-form">
+            <div class="row">
+                <div class="col-30">
+                    <label for="username" th:text="#{login}"></label>
+                </div>
+                <div class="col-70">
+                    <input type="email" id="username" name="username">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-30">
+                    <label for="password" th:text="#{password}"></label>
+                </div>
+                <div class="col-70">
+                    <input type="password" id="password" name="password">
+                </div>
+            </div>
+
+            <div class="row">
+                <button type="submit" class="square-btn" th:text="#{btn_logIn}"></button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <a th:href="@{/registration}" class="btn-round" th:text="#{btn_registration}"></a>
+    </div>
+
+    <div class="row">
+        <a th:href="@{/forgotpassword}"  class="btn-round" th:text="#{btn_forgot_pass}"></a>
+    </div>
+
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

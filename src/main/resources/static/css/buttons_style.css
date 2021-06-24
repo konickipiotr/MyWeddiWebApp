@@ -1,0 +1,51 @@
+.square-btn{
+    width: 200px;
+    padding: 16px 16px;
+    margin-top: 15px;
+    font-size: 20px;
+    border-radius: 5px;
+    color: #2E3E60;
+    font-family: 'Nunito', sans-serif;
+    transition: all 0.5s;
+    cursor: pointer;
+    text-decoration: none;
+    border-style: none;
+    background-color: #ebbec8;
+    border: 2px solid white;
+    margin-top: 25px;
+    letter-spacing: 3px;
+    font-weight: bolder;
+}
+
+.square-btn:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    transition: 0.5s;
+}
+
+.square-btn:hover {
+    background-color: rgb(255, 255, 255);
+    opacity: 30%;
+    padding-right: 25px;
+    letter-spacing: 5px;
+}
+
+
+/* ///////////////////////////////////////// */
+
+.btn-round{
+    font-family: 'Nunito', sans-serif;
+    font-size: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px 0px 15px 0px;
+    cursor: pointer;
+}
+
+.btn-round:hover{
+    opacity: 30%;
+    background-color: rgb(255, 255, 255);
+    font-weight: bold;
+}
