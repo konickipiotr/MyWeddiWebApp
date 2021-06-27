@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{appname}"></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/css/main_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/fragment_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/buttons_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/registration_style.css">
+</head>
+<body>
+    <header th:replace="fragments/topall :: topall"></header>
+    <h1 class="header_container" th:text="#{header_registration}"></h1>
+
+
+    <p id="error_message" class="error-message" th:text="${error_message}"></p>
+    <p th:if="${warrning_message}" id="warrning_message" class="warrning-message" th:text="${warrning_message}"></p>
+    <p th:if="${accept_message}" id="accept_message" class="accept-message" th:text="${accept_message}"></p>
+
+    <form th:action="@{/registration}" method="POST" th:object="${registrationForm}" onsubmit="return verifyForm()">
+        <div class="registration-inner-form">
+            <div class="row" style="margin-bottom: 20px;">
+                <div col-30>
+                    <input th:if="${registrationForm.accountType == 'PRIVATE'}" type="radio" id="user" name="accountType" value="PRIVATE" checked> 
+                    <input th:unless="${registrationForm.accountType == 'PRIVATE'}" type="radio" id="user" name="accountType" value="PRIVATE"> 
+                    <label for="user" th:text="#{priv_user}"></label>
+                </div>
+                <div col-30>
+                    <input th:if="${registrationForm.accountType == 'SERVICE'}" type="radio" id="service" name="accountType" value="SERVICE" checked> 
+                    <input th:unless="${registrationForm.accountType == 'SERVICE'}" type="radio" id="service" name="accountType" value="SERVICE"> 
+                    <label for="service" th:text="#{service_company}"></label>
+                </div>
+            </div>
+
+
+            <div class="reg-section">
+                <div class="row">
+                    <div class="col-30">
+                        <label for="username" th:text="#{login}">*</label>
+                    </div>
+                    <div class="col-70">
+                        <input type="email" id="username" name="username" th:field="*{username}" minlength="7" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-30">
+                        <label for="password" th:text="#{password}">*</label>
+                    </div>
+                    <div class="col-70">
+                        <input type="password" id="password" name="password" value="111111"  minlength="6" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-30">
+                        <label for="passwordagain" th:text="#{password_again}">*</label>
+                    </div>
+                    <div class="col-70">
+                        <input type="password" id="passwordagain" name="passwordagain" value="111111" minlength="6" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-30">
+                        <label for="phone" th:text="#{phone}"></label>
+                    </div>
+                    <div class="col-70">
+                        <input type="text" id="phone" name="phone" th:field="*{phone}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-30">
+                        <label for="location" th:text="#{location}"></label>
+                    </div>
+                    <div class="col-70">
+                        <input type="text" id="location" name="location" th:field="*{location}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="reg-section" id="user-section">
+                <div class="row">
+                    <div class="col-30">
+                        <label for="firstname" th:text="#{firstname}"></label>
+                    </div>
+                    <div class="col-70">
+                        <input type="text" id="firstname" name="firstname" th:field="*{firstname}" minlength="2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-30">
+                        <label for="lastname" th:text="#{lastname}" ></label>
+                    </div>
+                    <div class="col-70">
+                        <input type="text" id="lastname" name="lastname" th:field="*{lastname}" minlength="2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-30">
+                        <label for="birthyear" th:text="#{birth_year}"></label>
+                    </div>
+                    <div class="col-70">
+                        <input type="number" id="birthyear" name="birthyear" min="1920" step="1" th:field="*{birthyear}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <input th:if="${registrationForm.gender == 'W'}" type="radio" id="W" name="gender" value="W" checked>
+                        <input th:unless="${registrationForm.gender == 'W'}" type="radio" id="W" name="gender" value="W" >
+                        <label for="birthYear" th:text="#{woman}"></label>
+                    </div>
+                    <div class="col-25">
+                        <input th:if="${registrationForm.gender == 'M'}" type="radio" id="M" name="gender" value="M" checked>
+                        <input th:unless="${registrationForm.gender == 'M'}" type="radio" id="M" name="gender" value="M">
+                        <label for="M" th:text="#{man}"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reg-section" id="service-section">
+                <div class="row">
+                    <div class="col-30">
+                        <label for="range" th:text="#{range_of_service}"></label>
+                    </div>
+                    <div class="col-70">
+                        <select id="range" name="range">
+                            <option th:each="key : ${sevicerange.keySet()}" th:value="${key}" th:text="${sevicerange.get(key)}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-30">
+                        <label for="name" th:text="#{name}"></label>
+                    </div>
+                    <div class="col-70">
+                        <input type="text" id="name" name="name"  th:field="*{name}" minlength="2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-30">
+                        <label for="range" th:text="#{service_type}"></label>
+                    </div>
+                    <div class="col-70">
+                        <select name="serviceType" id="serviceType">
+                            <option th:each="key : ${services.keySet()}" th:value="${key}" th:text="${services.get(key)}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <button type="submit" class="square-btn" th:text="#{btn_registration}"></button>
+            </div>
+        </div>
+    </form>
+
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>
+<script th:inline="javascript">
+    var registrationForm = [[${registrationForm}]];
+</script>
+<script src="js/registration.js"></script>
+</html>

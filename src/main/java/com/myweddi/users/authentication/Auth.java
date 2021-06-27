@@ -8,7 +8,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -35,8 +38,10 @@ public class Auth implements UserDetails {
         this.username = username;
         this.password = password;
         this.accountType = accountType;
-        this.created = LocalDateTime.now(GlobalConfig.zid);
+        this.created = LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault());
         this.accountStatus = AccountStatus.INACTIVE;
+
+        System.out.println(this.created.toString());
     }
 
     public Long getId() {

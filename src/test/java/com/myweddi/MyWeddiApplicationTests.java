@@ -11,5 +11,4 @@ class MyWeddiApplicationTests {
 	void contextLoads() {
 		Assertions.assertTrue(true);
 	}
-
 }

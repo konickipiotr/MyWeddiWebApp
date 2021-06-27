@@ -14,9 +14,10 @@
     text-decoration:none;
 }
 
+
 .footer{
     position: absolute;
-    top: 80vw;
+    top: 90vh;
 }
 
 .footer_top{
@@ -25,7 +26,7 @@
     margin-bottom:2px;
     margin-top:5%;
 }
-    
+
 .footer_down{
     display:flex;
     justify-content: space-evenly;

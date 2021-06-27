@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{appname}"></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/css/main_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/fragment_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/buttons_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/login_style.css">
+</head>
+<body>
+    <header th:replace="fragments/topall :: topall"></header>
+    <h1 class="welcome-header">Error</h1>
+    <div class="heart">
+        <img src="/img/heart.png">
+    </div>
+
+    <p th:if="${error_message}" class="error-message" th:text="${error_message}"></p>
+
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
