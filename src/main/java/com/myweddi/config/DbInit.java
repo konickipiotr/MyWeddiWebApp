@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
-@Service
+//@Service
 public class DbInit implements CommandLineRunner {
 
     private final AuthRepository authRepository;
